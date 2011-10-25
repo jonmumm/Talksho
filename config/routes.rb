@@ -1,6 +1,4 @@
 Talkshow::Application.routes.draw do
-  get "host" => 'host#index'
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
