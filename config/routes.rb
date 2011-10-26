@@ -1,10 +1,4 @@
 Talkshow::Application.routes.draw do
-  root :to => 'show#new'
-
-  get "show/show"
-
-  post "show/create"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
