@@ -1,4 +1,9 @@
 Talkshow::Application.routes.draw do
+
+  root :to => 'shows#new'
+  get 'shows/:id' => 'shows#show'
+  put 'shows' => 'shows#create'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
