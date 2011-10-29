@@ -1,23 +1,16 @@
 Talkshow.Views.StageView = Backbone.View.extend
   initialize: ->
-    $(document).bind 'joinEvent', $.proxy @onJoinEvent, @
-    session.addEventListener 'streamCreated', $.proxy @onStreamCreated, @
-    session.addEventListener 'sessionConnected', $.proxy @onSessionConnected, @
+    @collection.bind 'add', $.proxy @onStageItemAdd, @
+    @collection.bind 'remove', $.proxy @onStageItemRemove, @
+    # Post API events out of here
 
-  onJoinEvent: ->
-    streamView = new Talkshow.Views.StreamView
-      parent: @el
+  onStageItemAdd: (model) ->
+    viewEl = $(@make "div", { id: model.get('id'), class: model.get('state') } )
+    viewEl.appendTo @el
 
-  onSessionConnected: (event) ->
-    for stream in event.streams
-      @subscribeToStream stream
+    stageItemView = new Talkshow.Views.StageItemView
+      el: viewEl
+      model: model
 
-  onStreamCreated: (event) ->
-    for stream in event.streams
-      @subscribeToStream stream
-        
-  subscribeToStream: (stream) ->
-    if stream.connection.connectionId isnt session.connection.connectionId
-      streamView = new Talkshow.Views.StreamView
-        parent: @el
-        stream: stream
+  onStageItemRemove: (model) ->
+    $("##{model.get('id')}").remove()

@@ -3,10 +3,17 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 window.session = TB.initSession sessionId
+window.state = {}
+###
+# $.ajax 'getJSON'
+###
 
 $(document).ready ->
-  # Initialize the main stage view
-  main = new Talkshow.Views.MainView
+  TB.setLogLevel TB.DEBUG
+  main = new Talkshow.Models.Main
+
+  mainView = new Talkshow.Views.MainView
+    model: main
     el: $(".main")
 
   session.connect apiKey, token

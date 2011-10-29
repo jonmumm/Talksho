@@ -32,15 +32,6 @@ class ShowsController < ApplicationController
     end
   end
 
-  def getState
-    @response.hi = "Hi"
-
-    render :json => @response 
-  end
-
-  def setState
-  end
-
   private
     def _init
       @opentok = OpenTok::OpenTokSDK.new APP_CONFIG['opentok_api_key'], APP_CONFIG['opentok_api_secret']

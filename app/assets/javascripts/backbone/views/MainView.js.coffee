@@ -7,7 +7,9 @@ Talkshow.Views.MainView = Backbone.View.extend
 
   render: ->
     @el.html @template
-    stage = new Talkshow.Views.StageView
+
+    stageView = new Talkshow.Views.StageView
+      collection: @model.get 'stageCollection'
       el: $(".stage", @el)
 
   events:
