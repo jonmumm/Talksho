@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027002613) do
+ActiveRecord::Schema.define(:version => 20111029201427) do
 
   create_table "shows", :force => true do |t|
     t.string   "name"
@@ -18,5 +18,15 @@ ActiveRecord::Schema.define(:version => 20111027002613) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "stages", :force => true do |t|
+    t.string   "sessionId"
+    t.string   "state"
+    t.string   "streamId"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stages", ["sessionId", "state"], :name => "index_stages_on_sessionId_and_state", :unique => true
 
 end
