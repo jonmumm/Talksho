@@ -9,7 +9,6 @@ window.state = {}
 ###
 
 $(document).ready ->
-  TB.setLogLevel TB.DEBUG
   main = new Talkshow.Models.Main
 
   mainView = new Talkshow.Views.MainView

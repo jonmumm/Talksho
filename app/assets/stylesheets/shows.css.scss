@@ -5,17 +5,17 @@
 .stage {
   position: relative; 
   padding-top: 400px;
-  .video.host {
+  .host {
     position: absolute;
     top: 0px;
     left: 0px;
   }
-  .video.guest {
+  .guest {
     position: absolute;
     top: 0px;
     right: 0px;
   }
-  .video.queue {
+  .queue {
     float: left;
   }
 }

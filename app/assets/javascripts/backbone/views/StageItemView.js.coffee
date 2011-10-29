@@ -13,6 +13,12 @@ Talkshow.Views.StageItemView = Backbone.View.extend
     else
       session.publish 'videoContainer'
 
+  events: ->
+    "click .stageEnterBtn": "onStageEnterBtnClick"
+
+  onStageEnterBtnClick: ->
+    @model.trigger 'stageEnter'
+
   onStateChange: (model, state) ->
     @el.removeClass()
     @el.addClass state
