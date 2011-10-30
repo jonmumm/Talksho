@@ -1,15 +1,15 @@
-Talkshow.Views.MainView = Backbone.View.extend
+Talkshow.Views.AppView = Backbone.View.extend
   initialize: ->
     @render()
     session.addEventListener 'sessionConnected', $.proxy @onSessionConnect, @
 
-  template: JST["backbone/templates/main"]
+  template: JST["backbone/templates/app"]
 
   render: ->
     @el.html @template
 
     stageView = new Talkshow.Views.StageView
-      collection: @model.get 'stageCollection'
+      collection: @model.get 'stageItems'
       el: $(".stage", @el)
 
   events:

@@ -1,11 +1,14 @@
 <%= stylesheet_link_tag "shows" %>
-<%= javascript_include_tag "http://staging.tokbox.com/v0.91/js/TB.min.js"%>
+<%= javascript_include_tag "http://staging.tokbox.com/v0.91/js/TB.min.js" %>
+<%= javascript_include_tag "http://js.pusherapp.com/1.9/pusher.min.js" %>
 <script type="text/javascript">
-  var apiKey = "<%= APP_CONFIG['opentok_api_key'] %>";
-  var token = "<%= @token %>";
+  var pusher_key = "<%= APP_CONFIG['pusher_key'] %>";
+
+  var opentok_api_key = "<%= APP_CONFIG['opentok_api_key'] %>";
+  var opentok_token = "<%= @token %>";
   var sessionId = "<%= @show.sessionId %>";
 </script>
 <%= javascript_include_tag "shows" %>
 
-<div class="main"></div>
+<div class="app"></div>
 

@@ -18,9 +18,10 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
 gem 'rails-backbone'
 gem 'opentok'
-
+gem "pusher", "~> 0.8.4"
 # Use unicorn as the web server
 # gem 'unicorn'
 

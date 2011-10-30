@@ -3,17 +3,14 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 window.session = TB.initSession sessionId
-window.state = {}
-###
-# $.ajax 'getJSON'
-###
+window.pusher = new Pusher pusher_key
+
+window.app = new Talkshow.Models.App
 
 $(document).ready ->
-  main = new Talkshow.Models.Main
 
-  mainView = new Talkshow.Views.MainView
-    model: main
-    el: $(".main")
+  appView = new Talkshow.Views.AppView
+    model: app
+    el: $(".app")
 
-  session.connect apiKey, token
-
+  session.connect opentok_api_key, opentok_token

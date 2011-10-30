@@ -1,3 +1,9 @@
+require 'pusher'
+
+Pusher.app_id = APP_CONFIG['pusher_app_id']
+Pusher.key = APP_CONFIG['pusher_key']
+Pusher.secret = APP_CONFIG['pusher_secret']
+
 class StageController < ApplicationController
 
   def get
@@ -9,11 +15,11 @@ class StageController < ApplicationController
   def set
     # Only do if adminstrator
     if not session[params[:sessionId]]
-      response = { :error => "User does not have privileges to perform this action" }
+      response = { :success => false, :msg => "User does not have privileges to perform this action" }
     else
       stage = Stage.where(:sessionId => params[:sessionId], :state => params[:state]).first
 
-      if response
+      if stage
         stage.streamId = params[:streamId]
         stage.save
       else
@@ -24,7 +30,13 @@ class StageController < ApplicationController
         stage.save
       end
 
-      response = stage
+      if stage.save
+        Pusher[stage.sessionId].trigger!('state', { :state => stage.state, :streamId => stage.streamId })
+        response = { :success => true }
+      else
+        response = { :success => false, :msg => "Problem saving stage state" }
+      end
+
     end
     
     render :json => response

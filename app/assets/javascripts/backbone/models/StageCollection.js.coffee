@@ -1,6 +1,8 @@
 Talkshow.Collections.StageCollection = Backbone.Collection.extend
   initialize: ->
     $(document).bind 'joinEvent', $.proxy @onJoinEvent, @
+
+    # Handle all new streams
     session.addEventListener 'streamCreated', $.proxy @onStreamCreated, @
     session.addEventListener 'sessionConnected', $.proxy @onSessionConnected, @
 
@@ -21,14 +23,13 @@ Talkshow.Collections.StageCollection = Backbone.Collection.extend
 
   updateStreamCollection: (stream) ->
     if stream.connection.connectionId isnt session.connection.connectionId
-      console.log stream
-
-      switch stream.streamId
-        when state.guest then itemState = "guest"
-        when state.host then itemState = "host"
-        else itemState = "queue"
+      stateItem = app.get('stageItems').get(stream.streamId)
+      if stateItem?
+        state = stateItem.get 'state'
+      else
+        state = "queue"
 
       @add new Talkshow.Models.StageItem
         id: stream.streamId
         stream: stream
-        state: itemState
+        state: state
