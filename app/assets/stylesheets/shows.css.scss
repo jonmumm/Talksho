@@ -5,17 +5,28 @@
 .stage {
   position: relative; 
   padding-top: 400px;
-  .host {
+  .host, .guest, .publish {
     position: absolute;
     top: 0px;
+    object {
+      width: 340px;
+      height: 275px;
+    }
+  }
+  .host {
     left: 0px;
   }
   .guest {
-    position: absolute;
-    top: 0px;
     right: 0px;
+  }
+  .publish {
+    left: 300px;
   }
   .queue {
     float: left;
+    object {
+      width: 160px;
+      height: 120px;
+    }
   }
 }

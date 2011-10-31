@@ -8,6 +8,7 @@ Talkshow.Views.AppView = Backbone.View.extend
   render: ->
     @el.html @template
 
+    connectView = new Talkshow.Views.ConnectModalView
     stageView = new Talkshow.Views.StageView
       collection: @model.get 'stageItems'
       el: $(".stage", @el)

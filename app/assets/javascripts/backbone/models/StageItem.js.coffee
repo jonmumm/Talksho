@@ -5,17 +5,21 @@ Talkshow.Models.StageItem = Backbone.Model.extend
     # Listen for pusher here event changes here
     # If streamId == this id, update the status
   
+  defaults:
+    id: "myPublisher"
+    state: "publish"
+
   onStreamCreated: (event) ->
     for stream in event.streams
       do (stream) =>
-        if stream.connection.connectionId is session.connection.connectionId
+        if @id is "myPublisher" and stream.connection.connectionId is session.connection.connectionId
           if session.capabilities.forceDisconnect
             @set
               stream: stream
               id: stream.streamId
             @updateRemoteState 'host'
           else
-            @set 'state', 'queue'
+            @set { state: 'queue' }
 
   onStageEnter: ->
     @updateRemoteState 'guest'

@@ -10,8 +10,6 @@ Talkshow.Collections.StageCollection = Backbone.Collection.extend
 
   onJoinEvent: ->
     @add new Talkshow.Models.StageItem
-      id: "myPublisher"
-      state: "publish"
 
   onSessionConnected: (event) ->
     for stream in event.streams
