@@ -27,6 +27,4 @@ ActiveRecord::Schema.define(:version => 20111029201427) do
     t.datetime "updated_at"
   end
 
-  add_index "stages", ["sessionId", "state"], :name => "index_stages_on_sessionId_and_state", :unique => true
-
 end

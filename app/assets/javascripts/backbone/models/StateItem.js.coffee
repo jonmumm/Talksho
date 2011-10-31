@@ -2,6 +2,7 @@ Talkshow.Models.StateItem = Backbone.Model.extend
   initialize: ->
     @updateStageItem()
     @bind "change:state", @onStateChange
+    console.log 'stateItem init'
 
   onStateChange: ->
     @updateStageItem()

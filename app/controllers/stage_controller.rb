@@ -17,18 +17,11 @@ class StageController < ApplicationController
     if not session[params[:sessionId]]
       response = { :success => false, :msg => "User does not have privileges to perform this action" }
     else
-      stage = Stage.where(:sessionId => params[:sessionId], :state => params[:state]).first
-
-      if stage
-        stage.streamId = params[:streamId]
-        stage.save
-      else
-        stage = Stage.new
-        stage.sessionId = params[:sessionId]
-        stage.streamId = params[:streamId]
-        stage.state = params[:state]
-        stage.save
-      end
+      stage = Stage.new
+      stage.sessionId = params[:sessionId]
+      stage.streamId = params[:streamId]
+      stage.state = params[:state]
+      stage.save
 
       if stage.save
         Pusher[stage.sessionId].trigger!('state', { :state => stage.state, :streamId => stage.streamId })

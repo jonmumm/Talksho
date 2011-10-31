@@ -23,7 +23,7 @@ Talkshow.Collections.StageCollection = Backbone.Collection.extend
 
   updateStreamCollection: (stream) ->
     if stream.connection.connectionId isnt session.connection.connectionId
-      stateItem = app.get('stageItems').get(stream.streamId)
+      stateItem = app.get('stateItems').get(stream.streamId)
       if stateItem?
         state = stateItem.get 'state'
       else

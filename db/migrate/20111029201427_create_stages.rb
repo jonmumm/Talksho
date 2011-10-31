@@ -7,7 +7,5 @@ class CreateStages < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    add_index :stages, [:sessionId, :state], :unique => true
   end
 end
