@@ -5,6 +5,7 @@ class ShowsController < ApplicationController
 
   def new
     @show = Show.new
+    @page_title = "Create a talk show"
   end
 
   def show
@@ -12,11 +13,15 @@ class ShowsController < ApplicationController
 
     if session[@show.sessionId]
       role = OpenTok::RoleConstants::MODERATOR
+      @moderator = true
     else
       role = OpenTok::RoleConstants::PUBLISHER
+      @moderator = false
     end
 
     @token = @opentok.generate_token:session_id => @show.sessionId, :role => role
+
+    @page_title = @show.name
   end
 
   def create
@@ -30,6 +35,22 @@ class ShowsController < ApplicationController
     else
       render :action => :new
     end
+  end
+
+  def update
+    @show = Show.find(params[:id])
+
+    if session[@show.sessionId]
+      @show.archiveId = params[:archiveId] 
+    end
+
+    if @show.save
+      response = { :success => true }
+    else
+        response = { :success => false, :msg => "Problem saving state state" }
+    end
+
+    render :json => response
   end
 
   private

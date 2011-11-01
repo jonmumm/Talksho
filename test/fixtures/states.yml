@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sessionId: MyString
+  streamId: MyString
+  state: MyString
+
+two:
+  sessionId: MyString
+  streamId: MyString
+  state: MyString

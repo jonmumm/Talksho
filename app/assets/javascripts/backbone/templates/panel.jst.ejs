@@ -1,0 +1,15 @@
+<% if (!playbackMode) { %>
+  <% if (moderator) { %>
+    <button class="btn success large startShowBtn" disabled="disabled">Start Show</button>
+    <button class="btn danger large stopShowBtn" disabled="disabled">Stop Show</button>
+  <% } else { %>
+    <button class="btn success large joinShowBtn" disabled="disabled">Join Show</button>
+    <button class="btn danger large leaveShowBtn" disabled="disabled">Leave Show</button>
+  <% } %>
+<% } else { %>
+    <button class="btn success large startPlaybackBtn" disabled="disabled">Start Playback</button>
+    <button class="btn danger large stopPlaybackBtn" disabled="disabled">Stop Playback</button>
+<% } %>
+
+<h2>Invite Others</h2>
+<p>Share this page to invite others to be a part of the show.</p>

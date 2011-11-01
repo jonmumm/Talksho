@@ -1,5 +1,5 @@
 <%= form_for @show do |f| %>
-  <h2>Enter show details</h2>
+  <h3>Create your show</h3>
 
   <% @show.errors.full_messages.each do |msg| %>
     <div class="alert-message error">
@@ -13,6 +13,12 @@
     <%= f.label :name %>
     <div class="input">
       <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :archiveShow, "Record Show" %>
+    <div class="input">
+      <%= f.check_box :archiveShow %>
     </div>
   </div>
   <div class="actions">
