@@ -1,6 +1,6 @@
 Talkshow.Collections.StateCollection = Backbone.Collection.extend
   initialize: ->
-    $.getJSON '/stage', { sessionId: sessionId }, $.proxy @onStateInit, @
+    $.getJSON "/states/#{sessionId}", $.proxy @onStateInit, @
     pusher.subscribe(sessionId).bind 'state', $.proxy @onStateUpdate, @
 
   model: Talkshow.Models.StateItem
@@ -13,6 +13,7 @@ Talkshow.Collections.StateCollection = Backbone.Collection.extend
     @addOrUpdateState item
 
   addOrUpdateState: (item) ->
+    console.log item
     if @get(item.streamId)?
       @get(item.streamId).set { state: item.state }
     else

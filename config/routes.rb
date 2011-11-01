@@ -4,8 +4,8 @@ Talkshow::Application.routes.draw do
   get 'shows/:id' => 'shows#show', :as => 'show'
   post 'shows' => 'shows#create'
 
-  get 'stage' => 'stage#get'
-  post 'stage' => 'stage#set'
+  get 'states/:sessionId' => 'states#show'
+  post 'states/:sessionId' => 'states#create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -26,10 +26,9 @@ Talkshow.Models.StageItem = Backbone.Model.extend
   
   updateRemoteState: (state) ->
     $.ajax
-      type: 'post'
-      url: '/stage'
+      type: "post"
+      url: "/states/#{sessionId}"
       data:
-        sessionId: sessionId
         state: state
         streamId: @get('stream').streamId
       success: (data) ->
